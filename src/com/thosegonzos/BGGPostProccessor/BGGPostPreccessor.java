@@ -15,7 +15,9 @@ public class BGGPostPreccessor {
 		// changeAgeRange();
 		// fixBestWith();
 		// cleanMinAge();
-		Category d = new Category();
+		// Category c = new Category();
+		// Domain d = new Domain();
+		Mechanic m = new Mechanic();
 		
 	}
 	
@@ -34,9 +36,14 @@ public class BGGPostPreccessor {
 			
 			while ((strLine = br.readLine()) != null)   
 			{
-				// System.out.println (strLine);
+				// System.out.println(strLine);
 				
 				newStringList = getAgeRange(strLine);
+				
+				if (newStringList.get(0).contains("2479"))
+				{
+					System.out.println(newStringList.toString()); 
+				}
 				
 				// String newLine = newStringList.toString(); 
 				StringBuilder sb = new StringBuilder();
@@ -77,7 +84,8 @@ public class BGGPostPreccessor {
 	
 	static ArrayList<String> getAgeRange(String strLine)
 	{
-		StringTokenizer st = new StringTokenizer(strLine, ",");
+		String addASpace = strLine.replaceAll(",,", ", ,");
+		StringTokenizer st = new StringTokenizer(addASpace, ",", false);
 		// String uglyRange = "";
 		String minAge;
 		String maxAge;
@@ -97,6 +105,15 @@ public class BGGPostPreccessor {
                 }
                 */
         }
+		
+		
+		if (tokenList.get(0).contains("2479"))
+		{
+			System.out.println(")) " + tokenList.toString());
+		}
+		
+		
+		
     	
 		if (tokenList.get(7).contains("?"))
     	{
@@ -189,7 +206,8 @@ public class BGGPostPreccessor {
 	
 	static ArrayList<String> getBestWith(String strLine)
 	{	
-		StringTokenizer st = new StringTokenizer(strLine, ",");
+		String addASpace = strLine.replaceAll(",,", ", ,");
+		StringTokenizer st = new StringTokenizer(addASpace, ",");
 		String bestSize;
 
 		ArrayList<String> tokenList = new ArrayList<String>();
@@ -299,7 +317,8 @@ public class BGGPostPreccessor {
 	
 	static ArrayList<String> getMinAge(String strLine)
 	{	
-		StringTokenizer st = new StringTokenizer(strLine, ",");
+		String addASpace = strLine.replaceAll(",,", ", ,");
+		StringTokenizer st = new StringTokenizer(addASpace, ",");
 		String minAge = "";
 
 		ArrayList<String> tokenList = new ArrayList<String>();
